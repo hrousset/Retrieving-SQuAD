@@ -1,6 +1,8 @@
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+# Vary preprocessing and similarity functions
+
 
 class TfIdf:
 
@@ -19,4 +21,5 @@ class TfIdf:
     def predict_many(self, questions):
         y = self.vectorizer.transform(questions)
         distances = np.dot(self.context_matrix, y.transpose())
-        return distances.argmax()
+        prediction = distances.argmax(axis=0)
+        return np.array(prediction).reshape(-1)

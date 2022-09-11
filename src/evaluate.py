@@ -1,4 +1,5 @@
 import sys
+from sklearn.metrics import accuracy_score
 sys.path.append("./")
 
 from dataset.dataset import *
@@ -6,7 +7,9 @@ from util.config import *
 from models.tf_idf_model import *
 
 
-def main(config_file="configs/config.yml"):
+def main():
+    config_file = sys.argv[1]
+    
     print("Evaluating train set")
     config = parse_config(config_file)
 
@@ -18,19 +21,8 @@ def main(config_file="configs/config.yml"):
     model = TfIdf()
     model.fit(dataset.train_contexts)
 
-    accuracy = 0
-
-    # prediction = model.predict_many(dataset.train_questions)
-
-
-    for question in dataset.train_questions:
-
-        prediction = model.predict(question[0])
-
-        if prediction == question[1]:
-            accuracy += 1
-    
-    accuracy /= len(dataset.train_questions)
+    prediction = model.predict_many(dataset.train_questions)
+    accuracy = accuracy_score(prediction, dataset.train_labels)
     
     print("The accuracy on the train set is ", np.round(accuracy,2))
 
