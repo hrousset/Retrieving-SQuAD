@@ -1,0 +1,7 @@
+# Paths
+data_path: '/Users/helenerousset/OneDrive - Capgemini/Documents/Illuin/squad1.1'
+train_filename: 'train-v1.1.json'
+test_filename: 'dev-v1.1.json'
+
+# Model : TFIDF or BERT
+model: 'BERT'
