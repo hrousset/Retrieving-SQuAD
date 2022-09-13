@@ -43,7 +43,7 @@ def main():
             model.load_context_embedding(config["context_pickle_name"])
 
         print("Infering questions")
-        prediction = model.predict_many(dataset.questions, load=False, filename='train_questions')
+        prediction = model.predict_many(dataset.questions, load=True, filename='train_question')
 
     accuracy = accuracy_score(prediction[:,-1], dataset.labels)
     print("The accuracy on the train set is ", np.round(accuracy,2))

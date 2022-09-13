@@ -37,5 +37,5 @@ def accuracy_at_rank_score(rank, labels, prediction):
     return np.round(acc_rank/len(ranks), 2)
 
 def get_inferred_rank(prediction, label):
-    rank = np.where(prediction==label)[0]
+    rank = int(np.where(prediction==label)[0])
     return len(prediction)-rank

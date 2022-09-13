@@ -9,7 +9,7 @@ dataset: train
 # Model : TFIDF or BERT
 model: BERT
 # Only for BERT model
-load_context: False
+load_context: true
 context_pickle_name: train_context
 
 # Metrics

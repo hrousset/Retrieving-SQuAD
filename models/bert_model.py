@@ -17,7 +17,7 @@ class BERT_model:
     def predict(self, question):
         question_embedding = self.model.encode([question])
         distances = util.dot_score(question_embedding, self.context_matrix)
-        return distances.argsort(axis=1)
+        return np.squeeze(distances.argsort(axis=1))
         
 
     def predict_many(self, questions, load=False, filename="question_encoding"):
@@ -30,8 +30,8 @@ class BERT_model:
             with open(file_path, "rb") as fp:
                 question_embedding = pickle.load(fp)
         
-        distances = util.dot_score(question_embedding, self.context_matrix) #accuracy 0.47, doc acc 0.7, mrr 0.57, rank10 0.76
-        # distances = util.cos_sim(question_embedding, self.context_matrix)
+        # distances = util.dot_score(question_embedding, self.context_matrix) #acc 0.47, doc acc 0.7, mrr 0.57, rank10 0.76
+        distances = util.cos_sim(question_embedding, self.context_matrix) #acc 0.52, doc acc 0.73, mrr 0.61, rank10 0.79
         
         return distances.argsort(axis=1)
 
