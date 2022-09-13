@@ -15,23 +15,25 @@ class BERT_model:
         self.context_matrix = self.model.encode(contexts)
     
     def predict(self, question):
-        question_embedding = self.model.encode(question)
+        question_embedding = self.model.encode([question])
         distances = util.dot_score(question_embedding, self.context_matrix)
-        print(distances)
-        return int(torch.argmax(distances))
+        return distances.argsort(axis=1)
         
 
-    def predict_many(self, questions):
-        # question_embedding = self.model.encode(questions)
-        file_path = "models/saved_models/train_questions.pkl"
-        # with open(file_path, "wb") as fp:
-        #     pickle.dump(question_embedding, fp)
-        with open(file_path, "rb") as fp:
-            question_embedding = pickle.load(fp)
+    def predict_many(self, questions, load=False, filename="question_encoding"):
+        file_path = "models/saved_models/" + filename + ".pkl"
+        if not load:
+            question_embedding = self.model.encode(questions)
+            with open(file_path, "wb") as fp:
+                pickle.dump(question_embedding, fp)
+        else:
+            with open(file_path, "rb") as fp:
+                question_embedding = pickle.load(fp)
         
-        # distances = util.dot_score(question_embedding, self.context_matrix)
-        distances = util.cos_sim(question_embedding, self.context_matrix)
-        return distances.argmax(axis=1)
+        distances = util.dot_score(question_embedding, self.context_matrix) #accuracy 0.47, doc acc 0.7, mrr 0.57, rank10 0.76
+        # distances = util.cos_sim(question_embedding, self.context_matrix)
+        
+        return distances.argsort(axis=1)
 
 
     def save_context_embedding(self, name):

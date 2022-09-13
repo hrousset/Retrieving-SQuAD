@@ -21,27 +21,29 @@ def get_questions(df):
             idx += 1
     return questions, labels
 
+def get_paragraphe_to_document_map(df):
+    map = {}
+    idx = 0
+    for index, row in df.iterrows():
+        for i in range(len(row['data']['paragraphs'])):
+            for j in range(len(row['data']['paragraphs'][i]['qas'])):
+                map[idx] = index
+                idx += 1
+    return map
+
 class Dataset:
     def __init__(self, data_path):
         self.data_path = data_path
 
-        self.train_contexts = []
-        self.train_questions = []
-        self.train_labels = []
-        self.test_contexts = []
-        self.test_questions = []
-        self.test_labels = []
+        self.contexts = []
+        self.questions = []
+        self.labels = []
+        self.paragraphe_to_document_map = None
 
-    def load_train_contexts_and_questions(self, filename):
+    def load_contexts_and_questions(self, filename):
         path = self.data_path + "/" + filename
-        df_train = pd.read_json(path)
+        df = pd.read_json(path)
         
-        self.train_contexts = get_context(df_train)
-        self.train_questions, self.train_labels = get_questions(df_train)
-
-    def load_test_contexts_and_questions(self, filename):
-        path = self.data_path + "/" + filename
-        df_test = pd.read_json(path)
-        
-        self.test_contexts = get_context(df_test)
-        self.test_questions, self.test_labels = get_questions(df_test)
+        self.contexts = get_context(df)
+        self.questions, self.labels = get_questions(df)
+        self.paragraphe_to_document_map = get_paragraphe_to_document_map(df)

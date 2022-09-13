@@ -1,7 +1,16 @@
 # Paths
-data_path: '/Users/helenerousset/OneDrive - Capgemini/Documents/Illuin/squad1.1'
-train_filename: 'train-v1.1.json'
-test_filename: 'dev-v1.1.json'
+data_path: /Users/helenerousset/OneDrive - Capgemini/Documents/Illuin/squad1.1
+train_filename: train-v1.1.json
+test_filename: dev-v1.1.json
+
+# Chosen dataset : train or test
+dataset: train
 
 # Model : TFIDF or BERT
-model: 'TFIDF'
+model: TFIDF
+
+# Metrics
+rank: 10
+
+# Inference question index (only for inference)
+question_idx: 10
