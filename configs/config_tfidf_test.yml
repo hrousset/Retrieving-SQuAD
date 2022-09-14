@@ -4,7 +4,7 @@ train_filename: train-v1.1.json
 test_filename: dev-v1.1.json
 
 # Chosen dataset : train or test
-dataset: train
+dataset: test
 
 # Model : TFIDF or BERT
 model: TFIDF
@@ -13,4 +13,4 @@ model: TFIDF
 rank: 10
 
 # Inference question index (only for inference)
-question_idx: 10
+question_idx: 30

@@ -20,7 +20,7 @@ class BERT_model:
         return np.squeeze(distances.argsort(axis=1))
         
 
-    def predict_many(self, questions, load=False, filename="question_encoding"):
+    def predict_many(self, questions, load, filename):
         file_path = "models/saved_models/" + filename + ".pkl"
         if not load:
             question_embedding = self.model.encode(questions)
@@ -30,8 +30,10 @@ class BERT_model:
             with open(file_path, "rb") as fp:
                 question_embedding = pickle.load(fp)
         
-        # distances = util.dot_score(question_embedding, self.context_matrix) #acc 0.47, doc acc 0.7, mrr 0.57, rank10 0.76
-        distances = util.cos_sim(question_embedding, self.context_matrix) #acc 0.52, doc acc 0.73, mrr 0.61, rank10 0.79
+        distances = util.cos_sim(question_embedding, self.context_matrix) 
+        #acc 0.52, doc acc 0.73, mrr 0.61, rank10 0.79 on train set
+        #acc 0.6, doc acc 0.91, mrr 0.7, rank10 0.89 on test set
+        # distances = util.dot_score(question_embedding, self.context_matrix) #acc 0.47, doc acc 0.7, mrr 0.57, rank10 0.76 on train set
         
         return distances.argsort(axis=1)
 

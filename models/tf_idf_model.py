@@ -26,7 +26,9 @@ class TfIdf:
 
     def __init__(self):
         self.context_matrix = None
-        self.vectorizer = TfidfVectorizer() #acc  0.46, acc doc 0.7, mrr 0.57, rank10 0.79 on train set
+        self.vectorizer = TfidfVectorizer() 
+        #acc  0.46, acc doc 0.7, mrr 0.57, rank10 0.79 on train set
+        #acc  0.61, acc doc 0.91, mrr 0.71, rank10 0.9 on test set
         # self.vectorizer = TfidfVectorizer(stop_words='english') #acc 0.44, acc doc 0.69, mrr 0.55, rank10 0.77 on train set
         # self.vectorizer = TfidfVectorizer(tokenizer=tokenize) #acc 0.44, doc acc 0.67, mrr 0.55, rank10 0.76 on train set
         # self.vectorizer = TfidfVectorizer(tokenizer=tokenize, stop_words='english') #acc 0.42, doc acc 0.66, mrr 0.53, rank10 0.74 on train set

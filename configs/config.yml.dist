@@ -8,9 +8,14 @@ dataset: train
 
 # Model : TFIDF or BERT
 model: BERT
-# Only for BERT model
-load_context: False
+
+# Indiquez si vous avez deja l'encodage des contextes et/ou des questions par le modele BERT
+# load_question et question_pickle_name ne servent que pour le script d'évaluation
+# train question n'est pas sur git a cause de sa taille
+load_context: true
 context_pickle_name: train_context
+load_question: true
+question_pickle_name: train_question
 
 # Metrics
 rank: 10

@@ -7,13 +7,10 @@ test_filename: dev-v1.1.json
 dataset: train
 
 # Model : TFIDF or BERT
-model: BERT
-# Only for BERT model
-load_context: true
-context_pickle_name: train_context
+model: TFIDF
 
 # Metrics
 rank: 10
 
 # Inference question index (only for inference)
-question_idx: 10
+question_idx: 30
