@@ -8,7 +8,7 @@ Clonez le repo, mettez vous a la base du dossier et installez les librairies nec
 
 Vous pouvez creer un envirennement virtuel avec virtualenv avant avec les commandes suivantes : 
 - Creation de l'environnement : ```python -m venv env_name``` (ou python3 selon ce qui est utilisé)
-- Acvtiver l'environnement : ```source env_name/bin/activate```
+- Activez l'environnement : ```source env_name/bin/activate```
 
 Desactivez l'environnement après utilisation avec ```deactivate```.
 
@@ -17,7 +17,7 @@ Il y a deux scripts qui sont executables :
 - ```evaluate.py``` : renvoie des metriques de réussites sur la totalité du train ou test set
 - ```inference.py``` : renvoie la réponse du model pour une question donnée pour le context de train ou test. Pour indiquer la question choisie, le dataset (train ou test) ainsi que l'indice de la question doivent être indiqués dans le fichier de config.
 
-En remplissant un fichier config dans le folder configs, on indique quel model on souhaite utiliser ainsi que quel dataset. On peut aussi choisir quelle question pour l'inférence. Le fichier ```configs/config.yml.dist``` est un template pour ces fichiers de config.
+En remplissant un fichier configuration dans le folder configs, on indique quel model on souhaite utiliser ainsi que quel dataset. On peut aussi choisir quelle question pour l'inférence. Le fichier ```configs/config.yml.dist``` est un template pour ces fichiers de configuration.
 
 Pour lancer un de ces deux scripts, on peut lancer dans sa ligne de commande la ligne suivante en remplacant ```script_file``` et ```config_file``` par les noms souhaités :
 
